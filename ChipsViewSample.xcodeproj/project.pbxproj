@@ -16,6 +16,9 @@
 		EA7DC84E20EE0AFF00F1EBC9 /* ChipsViewSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC84D20EE0AFF00F1EBC9 /* ChipsViewSampleUITests.swift */; };
 		EA7DC85C20EE0C3600F1EBC9 /* CartFile in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC85B20EE0C3600F1EBC9 /* CartFile */; };
 		EA7DC85F20EE0CD200F1EBC9 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */; };
+		EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */; };
+		EA7DC86520EE0DC300F1EBC9 /* ChipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */; };
+		EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		EA7DC84F20EE0AFF00F1EBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA7DC85B20EE0C3600F1EBC9 /* CartFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CartFile; sourceTree = "<group>"; };
 		EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/iOS/Prelude.framework; sourceTree = "<group>"; };
+		EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCell.swift; sourceTree = "<group>"; };
+		EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipCell.xib; sourceTree = "<group>"; };
+		EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 			children = (
 				EA7DC82D20EE0AFD00F1EBC9 /* AppDelegate.swift */,
 				EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */,
+				EA7DC86620EE0EB200F1EBC9 /* Util */,
+				EA7DC86120EE0D9400F1EBC9 /* Cell */,
 				EA7DC83120EE0AFD00F1EBC9 /* Main.storyboard */,
 				EA7DC83420EE0AFF00F1EBC9 /* Assets.xcassets */,
 				EA7DC83620EE0AFF00F1EBC9 /* LaunchScreen.storyboard */,
@@ -138,6 +146,23 @@
 				EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA7DC86120EE0D9400F1EBC9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */,
+				EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA7DC86620EE0EB200F1EBC9 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7DC86520EE0DC300F1EBC9 /* ChipCell.xib in Resources */,
 				EA7DC83820EE0AFF00F1EBC9 /* LaunchScreen.storyboard in Resources */,
 				EA7DC83520EE0AFF00F1EBC9 /* Assets.xcassets in Resources */,
 				EA7DC85C20EE0C3600F1EBC9 /* CartFile in Resources */,
@@ -291,6 +317,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */,
+				EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */,
 				EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */,
 				EA7DC82E20EE0AFD00F1EBC9 /* AppDelegate.swift in Sources */,
 			);
