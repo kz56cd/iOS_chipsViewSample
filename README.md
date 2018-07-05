@@ -1,2 +1,3 @@
-# iOS_chipsView
+# iOS_chipsViewSample
+
 collectionView like chips
