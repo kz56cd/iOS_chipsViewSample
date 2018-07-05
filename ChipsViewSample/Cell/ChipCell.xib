@@ -13,19 +13,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChipCell" customModule="ChipsViewSample" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uxm-d4-RLD">
-            <rect key="frame" x="0.0" y="0.0" width="62" height="32"/>
+            <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                <rect key="frame" x="0.0" y="0.0" width="62" height="32"/>
+                <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUK-jC-Cue" customClass="InspectableView" customModule="ChipsViewSample" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="62" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="32"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ガム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLq-N4-Mcx">
-                                <rect key="frame" x="17" y="9" width="30" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ガム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLq-N4-Mcx">
+                                <rect key="frame" x="16" y="9" width="28" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="bP6-Sc-br6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="s55-3E-rJL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.77419098984771573" blue="0.6070590968498063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
