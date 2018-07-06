@@ -14,15 +14,13 @@ import RxCocoa
 final class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    fileprivate var disposeBag = DisposeBag()
     
+    fileprivate var cellFrameInfos: [ChipsCellFrameInfo] = []
+    fileprivate var disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("collectionView.contentSize: \(collectionView.contentSize)")
     }
 }
 
@@ -32,7 +30,16 @@ extension ViewController {
         collectionView.dataSource = self as? UICollectionViewDataSource
         collectionView.registerClassForCellWithType(ChipCell.self)
         
-        // TODO: horizontalの場合は崩れるので、他の対応が必要
+        // 各セルのwidthを事前に計算する
+        cellFrameInfos = cellTitles.list.map { ChipsCellFrameInfo($0, basics: ChipsCellBasics()) }
+        
+        // CustomFlowLayoutのセットアップ
+        let layout = CollectionViewFlowLayoutLeftAlign()
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing  = 10
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        
+        // TODO: horizontalの場合は崩れるので、別途対応が必要
 //        guard let layout: CollectionViewFlowLayoutLeftAlign = collectionView.collectionViewLayout as? CollectionViewFlowLayoutLeftAlign else { return }
 //        print("ok")
 //        layout.scrollDirection = .horizontal
@@ -48,39 +55,18 @@ extension ViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("😡😡😡 tapped: \(indexPath.row)")
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+        ) -> CGSize {
+        return cellFrameInfos[indexPath.row].frame
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(10, 10, 10, 10)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        func calculateStringWidth(text: String, font: UIFont) -> CGFloat {
-            return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
-        }
-        
-        let leftRightMargins: CGFloat = 16.0 * 2.0
-        let stringWidth = calculateStringWidth(
-            text: cellTitles.list[indexPath.row],
-            font: UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)!
-        )
-        
-        return CGSize(
-            width: stringWidth + leftRightMargins,
-            height: 32
-        )
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("😡😡😡 tapped: \(indexPath.row)")
     }
 }
