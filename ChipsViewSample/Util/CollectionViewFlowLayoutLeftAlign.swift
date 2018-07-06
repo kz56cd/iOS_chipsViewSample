@@ -9,35 +9,35 @@
 import UIKit
 
 class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
-    
-//    override var itemSize: CGSize {
-//        return CGSize(width: 60, height: 32)
-//    }
-    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // あらかじめ決定されている表示領域内のレイアウト属性を取得
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
             return nil
         }
-        
         // layoutAttributesForItemAtIndexPath(_:)で各レイアウト属性を書き換える
         var attributesToReturn = attributes.map { $0.copy() as! UICollectionViewLayoutAttributes }
         for (index, attr) in attributes.enumerated() where attr.representedElementCategory == .cell {
             attributesToReturn[index] = layoutAttributesForItem(at: attr.indexPath) ?? UICollectionViewLayoutAttributes()
         }
         return attributesToReturn
-        
-//        return attributes
     }
     
     //layoutAttributesForItemAtIndexPath
-    // 各セルのレイアウト属性の補正をしていきます。
+    // 各セルのレイアウト属性の補正
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let currentAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
             let viewWidth = collectionView?.frame.width else {
                 return nil
         }
-
+        
+        // TODO: horizontalの場合は崩れるので、他の対応が必要
+//        switch self.scrollDirection {
+//        case .horizontal:
+//            // WIP
+//        case .vertical:
+//            // WIP
+//        }
+        
         print("=========================================================")
         print("row: \(indexPath.row)")
         print("🐱 viewWidth: \(viewWidth)")
