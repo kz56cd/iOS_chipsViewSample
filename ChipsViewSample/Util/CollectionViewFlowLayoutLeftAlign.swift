@@ -25,12 +25,6 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
     //layoutAttributesForItemAtIndexPath
     // 各セルのレイアウト属性の補正
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-//        guard let currentAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
-//            let viewWidth = collectionView?.frame.width,
-//            let viewHeight = collectionView?.frame.height else {
-//                return nil
-//        }
-        
         guard let currentAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes else { return nil }
         
         switch self.scrollDirection {
@@ -45,6 +39,7 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                 sectionInsets: sectionInsets(at: indexPath.section),
                 minimumLineSpacing: minimumLineSpacing(at: indexPath.section)
             )
+            print("linesNum: \(linesNum)")
              
             // sectionInsetの左端の値
             let sectionInsetsLeft = sectionInsets(at: indexPath.section).left
@@ -137,7 +132,7 @@ extension CollectionViewFlowLayoutLeftAlign {
     }
     
     func cellLinesNumber(by cellHight: CGFloat, viewHeight: CGFloat, sectionInsets: UIEdgeInsets, minimumLineSpacing: CGFloat) -> Int {
-        // let num = (viewHeight - sectionInset.top - sectionInset.bottom - minimumLineSpacing) / cellHight
-        return Int((viewHeight - sectionInset.top - sectionInset.bottom - minimumLineSpacing) / cellHight)
+        let lines = (viewHeight - sectionInset.top - sectionInset.bottom + minimumLineSpacing) / (cellHight + minimumLineSpacing)
+        return Int(lines)
     }
 }
