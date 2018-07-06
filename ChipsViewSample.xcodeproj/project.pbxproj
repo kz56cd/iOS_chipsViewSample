@@ -14,6 +14,13 @@
 		EA7DC83820EE0AFF00F1EBC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC83620EE0AFF00F1EBC9 /* LaunchScreen.storyboard */; };
 		EA7DC84320EE0AFF00F1EBC9 /* ChipsViewSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC84220EE0AFF00F1EBC9 /* ChipsViewSampleTests.swift */; };
 		EA7DC84E20EE0AFF00F1EBC9 /* ChipsViewSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC84D20EE0AFF00F1EBC9 /* ChipsViewSampleUITests.swift */; };
+		EA7DC85C20EE0C3600F1EBC9 /* CartFile in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC85B20EE0C3600F1EBC9 /* CartFile */; };
+		EA7DC85F20EE0CD200F1EBC9 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */; };
+		EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */; };
+		EA7DC86520EE0DC300F1EBC9 /* ChipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */; };
+		EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */; };
+		EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */; };
+		EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,13 @@
 		EA7DC84920EE0AFF00F1EBC9 /* ChipsViewSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChipsViewSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7DC84D20EE0AFF00F1EBC9 /* ChipsViewSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsViewSampleUITests.swift; sourceTree = "<group>"; };
 		EA7DC84F20EE0AFF00F1EBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA7DC85B20EE0C3600F1EBC9 /* CartFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CartFile; sourceTree = "<group>"; };
+		EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/iOS/Prelude.framework; sourceTree = "<group>"; };
+		EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCell.swift; sourceTree = "<group>"; };
+		EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipCell.xib; sourceTree = "<group>"; };
+		EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectableView.swift; sourceTree = "<group>"; };
+		EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayoutLeftAlign.swift; sourceTree = "<group>"; };
+		EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellTitleList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7DC85F20EE0CD200F1EBC9 /* Prelude.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				EA7DC84120EE0AFF00F1EBC9 /* ChipsViewSampleTests */,
 				EA7DC84C20EE0AFF00F1EBC9 /* ChipsViewSampleUITests */,
 				EA7DC82B20EE0AFD00F1EBC9 /* Products */,
+				EA7DC85B20EE0C3600F1EBC9 /* CartFile */,
+				EA7DC85D20EE0CD200F1EBC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,8 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				EA7DC82D20EE0AFD00F1EBC9 /* AppDelegate.swift */,
-				EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */,
 				EA7DC83120EE0AFD00F1EBC9 /* Main.storyboard */,
+				EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */,
+				EA7DC86620EE0EB200F1EBC9 /* Util */,
+				EA7DC86120EE0D9400F1EBC9 /* Cell */,
 				EA7DC83420EE0AFF00F1EBC9 /* Assets.xcassets */,
 				EA7DC83620EE0AFF00F1EBC9 /* LaunchScreen.storyboard */,
 				EA7DC83920EE0AFF00F1EBC9 /* Info.plist */,
@@ -125,6 +144,33 @@
 			path = ChipsViewSampleUITests;
 			sourceTree = "<group>";
 		};
+		EA7DC85D20EE0CD200F1EBC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA7DC86120EE0D9400F1EBC9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */,
+				EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EA7DC86620EE0EB200F1EBC9 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */,
+				EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */,
+				EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +181,7 @@
 				EA7DC82620EE0AFD00F1EBC9 /* Sources */,
 				EA7DC82720EE0AFD00F1EBC9 /* Frameworks */,
 				EA7DC82820EE0AFD00F1EBC9 /* Resources */,
+				EA7DC86020EE0CDA00F1EBC9 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -229,8 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7DC86520EE0DC300F1EBC9 /* ChipCell.xib in Resources */,
 				EA7DC83820EE0AFF00F1EBC9 /* LaunchScreen.storyboard in Resources */,
 				EA7DC83520EE0AFF00F1EBC9 /* Assets.xcassets in Resources */,
+				EA7DC85C20EE0C3600F1EBC9 /* CartFile in Resources */,
 				EA7DC83320EE0AFD00F1EBC9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,12 +300,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EA7DC86020EE0CDA00F1EBC9 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Prelude.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EA7DC82620EE0AFD00F1EBC9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */,
+				EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */,
+				EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */,
 				EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */,
+				EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */,
 				EA7DC82E20EE0AFD00F1EBC9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +503,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZMTZ3U33V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ChipsViewSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +525,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZMTZ3U33V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ChipsViewSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
