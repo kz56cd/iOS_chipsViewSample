@@ -21,6 +21,9 @@ final class ViewController: UIViewController {
         prepareCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("collectionView.contentSize: \(collectionView.contentSize)")
+    }
 }
 
 extension ViewController {
@@ -29,11 +32,10 @@ extension ViewController {
         collectionView.dataSource = self as? UICollectionViewDataSource
         collectionView.registerClassForCellWithType(ChipCell.self)
         
-//        collectionView.rx.contentOffset
-//            .subscribe(onNext: { offset in
-//                print("😤 offset: \(offset)")
-//            })
-//            .disposed(by: disposeBag)
+        // TODO: horizontalの場合は崩れるので、他の対応が必要
+//        guard let layout: CollectionViewFlowLayoutLeftAlign = collectionView.collectionViewLayout as? CollectionViewFlowLayoutLeftAlign else { return }
+//        print("ok")
+//        layout.scrollDirection = .horizontal
         
         let list = Observable.just(cellTitles.list.map{ $0 })
         list.bind(to: collectionView.rx.items) { collectionView, row, title in
@@ -66,13 +68,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        func calcStringWidth(text: String) -> CGFloat {
-            guard let font = UIFont(name: "Hiragino Kaku Gothic ProN", size: 14) else { return 0.0 }
+        func calculateStringWidth(text: String, font: UIFont) -> CGFloat {
             return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
         }
         
+        let leftRightMargins: CGFloat = 16.0 * 2.0
+        let stringWidth = calculateStringWidth(
+            text: cellTitles.list[indexPath.row],
+            font: UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)!
+        )
+        
         return CGSize(
-            width: calcStringWidth(text: cellTitles.list[indexPath.row]) + 16.0 * 2.0,
+            width: stringWidth + leftRightMargins,
             height: 32
         )
     }
