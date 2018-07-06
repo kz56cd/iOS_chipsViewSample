@@ -10,6 +10,8 @@ import UIKit
 import Prelude
 
 final class ChipCell: UICollectionViewCell, XibInstantiatable {
+    @IBOutlet weak var textLabel: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         instantiate()
@@ -22,5 +24,7 @@ final class ChipCell: UICollectionViewCell, XibInstantiatable {
 }
 
 extension ChipCell {
-    
+    func configure(_ title: String) {
+        textLabel.text = title
+    }
 }

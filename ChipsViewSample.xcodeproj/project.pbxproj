@@ -19,6 +19,8 @@
 		EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */; };
 		EA7DC86520EE0DC300F1EBC9 /* ChipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */; };
 		EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */; };
+		EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */; };
+		EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		EA7DC86220EE0DAD00F1EBC9 /* ChipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCell.swift; sourceTree = "<group>"; };
 		EA7DC86420EE0DC300F1EBC9 /* ChipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipCell.xib; sourceTree = "<group>"; };
 		EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectableView.swift; sourceTree = "<group>"; };
+		EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayoutLeftAlign.swift; sourceTree = "<group>"; };
+		EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellTitleList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +164,9 @@
 		EA7DC86620EE0EB200F1EBC9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */,
 				EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */,
+				EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -319,7 +325,9 @@
 			files = (
 				EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */,
 				EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */,
+				EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */,
 				EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */,
+				EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */,
 				EA7DC82E20EE0AFD00F1EBC9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
