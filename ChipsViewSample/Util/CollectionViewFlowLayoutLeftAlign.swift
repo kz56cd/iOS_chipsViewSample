@@ -9,6 +9,10 @@
 import UIKit
 
 class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
+    
+    
+    var layoutAttributes: [UICollectionViewLayoutAttributes] = []
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // あらかじめ決定されている表示領域内のレイアウト属性を取得
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
@@ -32,6 +36,11 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
             // print("=========================================================")
             // print("row: \(indexPath.row)")
             
+            if layoutAttributes.count >= indexPath.row + 1 {
+                print("layoutAttributes.count: \(layoutAttributes.count)")
+                return layoutAttributes[indexPath.row]
+            }
+            
             guard let viewHeight = collectionView?.frame.height else { return nil }
             let linesNum = cellLinesNumber(
                 by: currentAttributes.frame.height,
@@ -39,14 +48,15 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                 sectionInsets: sectionInsets(at: indexPath.section),
                 minimumLineSpacing: minimumLineSpacing(at: indexPath.section)
             )
-            print("linesNum: \(linesNum)")
-             
+//            print("linesNum: \(linesNum)")
+            
             // sectionInsetの左端の値
             let sectionInsetsLeft = sectionInsets(at: indexPath.section).left
             
             // 段数に応じ、先頭にくるセルは、x座標を左端にする
             guard indexPath.item >= linesNum else {
                 currentAttributes.frame.origin.x = sectionInsetsLeft
+                layoutAttributes.append(currentAttributes)
                 return currentAttributes
             }
              
@@ -55,13 +65,14 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
             guard let prevFrame = layoutAttributesForItem(at: prevIndexPath)?.frame else {
                 return nil
             }
-            print("💛 prevFrame: \(prevFrame)")
-             
+//            print("💛 prevFrame: \(prevFrame)")
+            
             // 左に隣接するセルの、末尾のx座標を取得
             let prevItemTailX = prevFrame.origin.x + prevFrame.width
             currentAttributes.frame.origin.x = prevItemTailX + minimumInteritemSpacing(at: indexPath.section)
-             print("💜💜 currentAttributes.frame.origin.x (2回目): \(currentAttributes.frame.origin.x)")
-             print("\n")
+//             print("💜💜 currentAttributes.frame.origin.x (2回目): \(currentAttributes.frame.origin.x)")
+//             print("\n")
+            layoutAttributes.append(currentAttributes)
             return currentAttributes
         case .vertical:
             // print("=========================================================")

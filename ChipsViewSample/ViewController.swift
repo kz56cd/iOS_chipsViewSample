@@ -57,6 +57,9 @@ extension ViewController {
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        
+        print("cellTitles.list.count: \(cellTitles.list.count)")
     }
 }
 
