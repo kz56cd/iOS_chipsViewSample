@@ -22,10 +22,8 @@ final class ViewController: UIViewController {
 extension ViewController {
     fileprivate func prepareCollectionView() {
         collectionView.registerClassForCellWithType(ChipCell.self)
-//        collectionView.collectionViewLayout = CollectionViewFlowLayoutLeftAlign()
-    
-        let layout = CollectionViewFlowLayoutLeftAlign()
-        collectionView.collectionViewLayout = layout
+//        let layout = CollectionViewFlowLayoutLeftAlign()
+//        collectionView.collectionViewLayout = layout
     }
 }
 
@@ -58,7 +56,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         func calcStringWidth(text: String) -> CGFloat {
-            let font = UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)
+            guard let font = UIFont(name: "Hiragino Kaku Gothic ProN", size: 14) else { return 0.0 }
             return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
         }
         
