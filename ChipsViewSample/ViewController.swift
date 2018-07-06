@@ -35,16 +35,21 @@ extension ViewController {
         
         // CustomFlowLayoutのセットアップ
         let layout = CollectionViewFlowLayoutLeftAlign()
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 10 // 仮で広めにマージン取る
         layout.minimumLineSpacing  = 10
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+        layout.scrollDirection = .horizontal // TODO: horizontalの場合は崩れるので、別途対応が必要
+        collectionView.collectionViewLayout = layout
         
-        // TODO: horizontalの場合は崩れるので、別途対応が必要
-//        guard let layout: CollectionViewFlowLayoutLeftAlign = collectionView.collectionViewLayout as? CollectionViewFlowLayoutLeftAlign else { return }
-//        print("ok")
-//        layout.scrollDirection = .horizontal
+        
+//        var numList: [String] = []
+//        for num in 1...300 {
+//            numList.append("\(num)")
+//        }
+//        cellFrameInfos = numList.map { ChipsCellFrameInfo($0, basics: ChipsCellBasics()) }
         
         let list = Observable.just(cellTitles.list.map{ $0 })
+//        let list = Observable.just(numList.map{ $0 })
         list.bind(to: collectionView.rx.items) { collectionView, row, title in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)

@@ -9,6 +9,9 @@
 import UIKit
 
 class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
+    
+    private let cellLineNumber = 2 // TODO: セルが何段になるか、heightを計算して動的に取得させる
+    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // あらかじめ決定されている表示領域内のレイアウト属性を取得
         guard let attributes = super.layoutAttributesForElements(in: rect) else {
@@ -31,51 +34,89 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
         }
         
         // TODO: horizontalの場合は崩れるので、他の対応が必要
-//        switch self.scrollDirection {
-//        case .horizontal:
-//            // WIP
-//        case .vertical:
-//            // WIP
-//        }
-        
-        // print("=========================================================")
-        // print("row: \(indexPath.row)")
-        // print("🐱 viewWidth: \(viewWidth)")
-        
-        // sectionInsetの左端の値
-        let sectionInsetsLeft = sectionInsets(at: indexPath.section).left
-        
-        // 先頭セルの場合はx座標を左端にして返す
-        guard indexPath.item > 0 else {
-            currentAttributes.frame.origin.x = sectionInsetsLeft
+        switch self.scrollDirection {
+        case .horizontal:
+            // print(".horizontal")
+            
+            // WIP
+            
+             print("=========================================================")
+             print("row: \(indexPath.row)")
+             print("🐱 viewWidth: \(viewWidth)")
+            
+            // sectionInsetの左端の値
+            let sectionInsetsLeft = sectionInsets(at: indexPath.section).left
+            
+            // 段数に応じ、先頭にくるセルは、x座標を左端にする
+            guard indexPath.item >= cellLineNumber else {
+                currentAttributes.frame.origin.x = sectionInsetsLeft
+                return currentAttributes
+            }
+             
+            // 左に隣接するセルを取得
+            let prevIndexPath = IndexPath(row: indexPath.item - cellLineNumber, section: indexPath.section)
+            guard let prevFrame = layoutAttributesForItem(at: prevIndexPath)?.frame else {
+                return nil
+            }
+            print("💛 prevFrame: \(prevFrame)")
+            
+            // horizontalだと必要ない？？
+             
+            // 現在のセルの行内にひとつ前のセルが収まっているか比較
+//            let validWidth = viewWidth - sectionInset.left - sectionInset.right
+//             print("💛 validWidth: \(validWidth)")
+//            let currentColumnRect = CGRect(x: sectionInsetsLeft, y: currentAttributes.frame.origin.y, width: validWidth, height: currentAttributes.frame.height)
+//            guard prevFrame.intersects(currentColumnRect) else { // 収まっていない場合
+//                currentAttributes.frame.origin.x = sectionInsetsLeft // x座標を左端にして返す
+//                return currentAttributes
+//            }
+             
+            // 左に隣接するセルの、末尾のx座標を取得
+            let prevItemTailX = prevFrame.origin.x + prevFrame.width
+            currentAttributes.frame.origin.x = prevItemTailX + minimumInteritemSpacing(at: indexPath.section)
+             print("💜💜 currentAttributes.frame.origin.x (2回目): \(currentAttributes.frame.origin.x)")
+             print("\n")
+            return currentAttributes
+            
+        case .vertical:
+            // print("=========================================================")
+            // print("row: \(indexPath.row)")
+            // print("🐱 viewWidth: \(viewWidth)")
+            
+            // sectionInsetの左端の値
+            let sectionInsetsLeft = sectionInsets(at: indexPath.section).left
+            
+            // 先頭セルの場合はx座標を左端にして返す
+            guard indexPath.item > 0 else {
+                currentAttributes.frame.origin.x = sectionInsetsLeft
+                return currentAttributes
+            }
+            // print("💜 currentAttributes.frame.origin.x (1回目): \(currentAttributes.frame.origin.x)")
+            
+            // ひとつ前のセルを取得
+            let prevIndexPath = IndexPath(row: indexPath.item - 1, section: indexPath.section)
+            guard let prevFrame = layoutAttributesForItem(at: prevIndexPath)?.frame else {
+                return nil
+            }
+            // print("💛 prevFrame: \(prevFrame)")
+            
+            // 現在のセルの行内にひとつ前のセルが収まっているか比較
+            let validWidth = viewWidth - sectionInset.left - sectionInset.right
+            // print("💛 validWidth: \(validWidth)")
+            let currentColumnRect = CGRect(x: sectionInsetsLeft, y: currentAttributes.frame.origin.y, width: validWidth, height: currentAttributes.frame.height)
+            guard prevFrame.intersects(currentColumnRect) else { // 収まっていない場合
+                currentAttributes.frame.origin.x = sectionInsetsLeft // x座標を左端にして返す
+                return currentAttributes
+            }
+            
+            let prevItemTailX = prevFrame.origin.x + prevFrame.width
+            currentAttributes.frame.origin.x = prevItemTailX + minimumInteritemSpacing(at: indexPath.section)
+            // print("💜💜 currentAttributes.frame.origin.x (2回目): \(currentAttributes.frame.origin.x)")
+            // print("\n")
             return currentAttributes
         }
-        // print("💜 currentAttributes.frame.origin.x (1回目): \(currentAttributes.frame.origin.x)")
-        
-        // ひとつ前のセルを取得
-        let prevIndexPath = IndexPath(row: indexPath.item - 1, section: indexPath.section)
-        guard let prevFrame = layoutAttributesForItem(at: prevIndexPath)?.frame else {
-            return nil
-        }
-        // print("💛 prevFrame: \(prevFrame)")
-        
-        // 現在のセルの行内にひとつ前のセルが収まっているか比較
-        let validWidth = viewWidth - sectionInset.left - sectionInset.right
-        // print("💛 validWidth: \(validWidth)")
-        let currentColumnRect = CGRect(x: sectionInsetsLeft, y: currentAttributes.frame.origin.y, width: validWidth, height: currentAttributes.frame.height)
-        guard prevFrame.intersects(currentColumnRect) else { // 収まっていない場合
-            currentAttributes.frame.origin.x = sectionInsetsLeft // x座標を左端にして返す
-            return currentAttributes
-        }
-        
-        let prevItemTailX = prevFrame.origin.x + prevFrame.width
-        currentAttributes.frame.origin.x = prevItemTailX + minimumInteritemSpacing(at: indexPath.section)
-        // print("💜💜 currentAttributes.frame.origin.x (2回目): \(currentAttributes.frame.origin.x)")
-        // print("\n")
-        return currentAttributes
     }
 }
-
 
 //collectionViewのsectionInsetとminimumInteritemSpacingを必要とするので、
 // VC内でUICollectionViewDelegateFlowLayout経由で取得
