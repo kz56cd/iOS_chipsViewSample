@@ -8,38 +8,49 @@
 
 import UIKit
 import Prelude
+import RxSwift
+import RxCocoa
 
 final class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    fileprivate var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
     }
+    
 }
 
 extension ViewController {
     fileprivate func prepareCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self as? UICollectionViewDataSource
         collectionView.registerClassForCellWithType(ChipCell.self)
-//        let layout = CollectionViewFlowLayoutLeftAlign()
-//        collectionView.collectionViewLayout = layout
+        
+//        collectionView.rx.contentOffset
+//            .subscribe(onNext: { offset in
+//                print("😤 offset: \(offset)")
+//            })
+//            .disposed(by: disposeBag)
+        
+        let list = Observable.just(cellTitles.list.map{ $0 })
+        list.bind(to: collectionView.rx.items) { collectionView, row, title in
+                let indexPath = IndexPath(row: row, section: 0)
+                let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
+                cell.configure(title)
+                return cell
+            }
+            .disposed(by: disposeBag)
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellTitles.list.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
-        cell.configure(cellTitles.list[indexPath.row])
-        return cell
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("😡😡😡 tapped: \(indexPath.row)")
     }
 }
-
-extension ViewController: UICollectionViewDelegate {}
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -66,8 +77,3 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         )
     }
 }
-
-
-
-
-
