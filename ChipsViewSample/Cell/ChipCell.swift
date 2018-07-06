@@ -39,8 +39,7 @@ extension ChipCell {
 struct ChipsCellFrameInfo {
     let contentString: String
     let frame: CGSize
-    let leftRightMargins: CGFloat
-    let stringWidth: CGFloat
+    let basics: ChipsCellBasics
     
     init(_ contentString: String, basics: ChipsCellBasics) {
         func calculateStringWidth(text: String, font: UIFont) -> CGFloat {
@@ -48,12 +47,11 @@ struct ChipsCellFrameInfo {
         }
         
         self.contentString = contentString
-        self.leftRightMargins = basics.leftRightMargins
-        stringWidth = calculateStringWidth(
-            text: self.contentString,
-            font: basics.font
+        self.basics = basics
+        frame = CGSize(
+            width: calculateStringWidth(text: self.contentString, font: basics.font) + self.basics.leftRightMargins,
+            height: basics.cellHeight
         )
-        frame = CGSize(width: stringWidth + leftRightMargins, height: basics.cellHeight)
     }
 }
 
