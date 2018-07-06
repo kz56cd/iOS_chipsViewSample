@@ -25,7 +25,6 @@ extension ViewController {
 //        collectionView.collectionViewLayout = CollectionViewFlowLayoutLeftAlign()
     
         let layout = CollectionViewFlowLayoutLeftAlign()
-        layout.itemSize = CGSize(width: 60, height: 32)
         collectionView.collectionViewLayout = layout
     }
 }
@@ -55,6 +54,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        func calcStringWidth(text: String) -> CGFloat {
+            let font = UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)
+            return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
+        }
+        
+        return CGSize(
+            width: calcStringWidth(text: cellTitles.list[indexPath.row]) + 16.0 * 2.0,
+            height: 32
+        )
     }
 }
 
