@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA50DCA920F6228E00635914 /* ChipCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50DCA820F6228E00635914 /* ChipCellProtocol.swift */; };
 		EA7DC82E20EE0AFD00F1EBC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC82D20EE0AFD00F1EBC9 /* AppDelegate.swift */; };
 		EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */; };
 		EA7DC83320EE0AFD00F1EBC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA7DC83120EE0AFD00F1EBC9 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA50DCA820F6228E00635914 /* ChipCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipCellProtocol.swift; sourceTree = "<group>"; };
 		EA7DC82A20EE0AFD00F1EBC9 /* ChipsViewSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChipsViewSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7DC82D20EE0AFD00F1EBC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA50DCA720F6228200635914 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				EA50DCA820F6228E00635914 /* ChipCellProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		EA7DC82120EE0AFD00F1EBC9 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 				EA7DC82D20EE0AFD00F1EBC9 /* AppDelegate.swift */,
 				EA7DC83120EE0AFD00F1EBC9 /* Main.storyboard */,
 				EA7DC82F20EE0AFD00F1EBC9 /* ViewController.swift */,
+				EA50DCA720F6228200635914 /* Protocol */,
 				EA7DC86620EE0EB200F1EBC9 /* Util */,
 				EA7DC86120EE0D9400F1EBC9 /* Cell */,
 				EA7DC83420EE0AFF00F1EBC9 /* Assets.xcassets */,
@@ -337,6 +348,7 @@
 				EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */,
 				EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */,
 				EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */,
+				EA50DCA920F6228E00635914 /* ChipCellProtocol.swift in Sources */,
 				EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */,
 				EA7DC82E20EE0AFD00F1EBC9 /* AppDelegate.swift in Sources */,
 			);
