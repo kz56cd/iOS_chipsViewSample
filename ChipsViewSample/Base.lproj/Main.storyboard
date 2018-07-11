@@ -27,8 +27,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95223520974190778" green="0.93490771761799873" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DRU-o7-02T" secondAttribute="bottom" id="4uK-fg-u4v"/>
                             <constraint firstItem="DRU-o7-02T" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="a0T-tR-6ih"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DRU-o7-02T" secondAttribute="bottom" id="hyW-Uq-qo5"/>
                             <constraint firstItem="DRU-o7-02T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jJO-bc-ob6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DRU-o7-02T" secondAttribute="trailing" id="k7Y-NR-jvA"/>
                         </constraints>

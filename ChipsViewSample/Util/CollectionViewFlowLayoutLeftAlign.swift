@@ -46,10 +46,6 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                     sectionInsets: sectionInsets(at: 0),
                     minimumLineSpacing: minimumLineSpacing(at: 0)
                 )
-                let columHeight = floor(collectionView.bounds.height / CGFloat(linesNum))
-                let hoge = collectionView.bounds.height / CGFloat(linesNum)
-                // print("columHeight（切り捨てなし）： \(hoge)")
-
                 if let cellPositionType = HorizontalCellPositionType.calcPosition(by: linesNum, item: item) {
                     // print("\(item) -> \(cellPositionType)")
                     layoutAttribute.frame.size = cellSize
@@ -68,21 +64,21 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                         let prevAttributeFrame = layoutAttributes[item - 1].frame
                         layoutAttribute.frame.origin = CGPoint(
                             x: sectionInsets(at: 0).left,
-                            y: prevAttributeFrame.maxY + minimumLineSpacing(at: 0)
+                            y: prevAttributeFrame.maxY + actualLineSpacing(at: item, linesNum: linesNum, from: collectionView.bounds.height)
                         )
                     case .topEdge:
                         // print("item - linesNum \(item - linesNum)")
                         // 左に隣接するセルframeを取得
                         let nearLeftAttributeFrame = layoutAttributes[item - linesNum].frame
                         layoutAttribute.frame.origin = CGPoint(
-                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
+                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: item),
                             y: sectionInsets(at: 0).top
                         )
                     case .noEdge, .bottomEdge:
                         // 左に隣接するセルframeを取得
                         let nearLeftAttributeFrame = layoutAttributes[item - linesNum].frame
                         layoutAttribute.frame.origin = CGPoint(
-                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
+                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: item),
                             y: nearLeftAttributeFrame.origin.y
                         )
                     }
@@ -401,8 +397,7 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
 //    }
 }
 
-//collectionViewのsectionInsetとminimumInteritemSpacingを必要とするので、
-// VC内でUICollectionViewDelegateFlowLayout経由で取得
+// UICollectionViewDelegateFlowLayoutを継承
 extension CollectionViewFlowLayoutLeftAlign {
     fileprivate func sizeForItem(at index: Int) -> CGSize {
         guard let collectionView = collectionView,
@@ -435,9 +430,20 @@ extension CollectionViewFlowLayoutLeftAlign {
         }
         return delegate.collectionView?(collectionView, layout: self, minimumLineSpacingForSectionAt: index) ?? self.minimumLineSpacing
     }
+}
     
-    func cellLinesNumber(by cellHight: CGFloat, viewHeight: CGFloat, sectionInsets: UIEdgeInsets, minimumLineSpacing: CGFloat) -> Int {
+extension CollectionViewFlowLayoutLeftAlign {
+    fileprivate func cellLinesNumber(by cellHight: CGFloat, viewHeight: CGFloat, sectionInsets: UIEdgeInsets, minimumLineSpacing: CGFloat) -> Int {
         let lines = (viewHeight - sectionInset.top - sectionInset.bottom + minimumLineSpacing) / (cellHight + minimumLineSpacing)
         return Int(lines)
+    }
+    
+    // 実際の列ごとのマージンの取得
+    // （contentSize.heightによって、minimumLineSpacingよりも大きな値になるため、事前計算用に用意している)
+    fileprivate func actualLineSpacing(at index: Int, linesNum: Int, from viewHeight: CGFloat) -> CGFloat {
+        let viewHeightWithoutPadding = viewHeight - sectionInsets(at: 0).top - sectionInsets(at: 0).bottom
+        let actualSpacing = (viewHeightWithoutPadding - CGFloat(linesNum) * sizeForItem(at: index).height) / CGFloat(linesNum - 1)
+        let minimumSpacing = minimumLineSpacing(at: index)
+        return actualSpacing > minimumSpacing ? actualSpacing : minimumSpacing
     }
 }

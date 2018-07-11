@@ -24,7 +24,8 @@ final class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showAlert()
+        // showAlert()
+        prepareCollectionView(UICollectionViewScrollDirection.horizontal)
     }
 }
 
@@ -73,7 +74,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("😡😡😡 tapped: \(indexPath.row)")
+        print("😡 tapped: \(indexPath.row)")
     }
 }
 
