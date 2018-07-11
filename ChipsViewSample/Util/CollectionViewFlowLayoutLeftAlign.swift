@@ -10,7 +10,6 @@ import UIKit
 
 class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
     var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-
     var contentWidth: CGFloat = 0
     var contentHeight: CGFloat = 0
     
@@ -133,17 +132,9 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         super.layoutAttributesForElements(in: rect)
-        
-        switch self.scrollDirection {
-        case .horizontal:
-            return layoutAttributes
-                .filter { $0.frame.intersects(rect) }
-                .map { return $0 }
-        case .vertical:
-            return layoutAttributes
-                .filter { $0.frame.intersects(rect) }
-                .map { return $0 }
-        }
+        return layoutAttributes
+            .filter { $0.frame.intersects(rect) }
+            .map { return $0 }
     }
     
     enum HorizontalCellPositionType {
