@@ -14,12 +14,14 @@ import RxCocoa
 final class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var changeButton: UIButton!
     
     fileprivate var cellFrameInfos: [ChipCellFrameInfo] = []
     fileprivate var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareChangeButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,11 +55,9 @@ extension ViewController {
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
                 cell.configure(title)
-                // print("collectionView.contentSize \(collectionView.contentSize)")
                 return cell
             }
             .disposed(by: disposeBag)
-        // print("cellTitles.list.count: \(cellTitles.list.count)")
     }
 }
 
@@ -77,7 +77,7 @@ extension ViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: Alert
+// MARK: Alert, change button (none of this collectionView logic)
 extension ViewController {
     fileprivate func showAlert() {
         let controller = UIAlertController(title: nil, message: "Select scroll direction.", preferredStyle: .alert)
@@ -98,5 +98,14 @@ extension ViewController {
             })
         )
         present(controller, animated: true, completion: nil)
+    }
+    
+    fileprivate func prepareChangeButton() {
+        changeButton.rx.tap
+            .subscribe(onNext: { [weak self] route in
+                guard let `self` = self else { return }
+                self.showAlert()
+            })
+            .disposed(by: disposeBag)
     }
 }

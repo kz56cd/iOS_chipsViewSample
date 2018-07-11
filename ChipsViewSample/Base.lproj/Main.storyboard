@@ -19,24 +19,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DRU-o7-02T">
-                                <rect key="frame" x="0.0" y="97.5" width="375" height="472"/>
+                                <rect key="frame" x="0.0" y="118.5" width="375" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="472" id="mS6-6G-a12"/>
+                                    <constraint firstAttribute="height" constant="430" id="mS6-6G-a12"/>
                                 </constraints>
                                 <collectionViewLayout key="collectionViewLayout" id="4aS-83-EdU" customClass="CollectionViewFlowLayoutLeftAlign" customModule="ChipsViewSample" customModuleProvider="target"/>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySR-I9-kEc">
+                                <rect key="frame" x="20" y="568.5" width="335" height="30"/>
+                                <color key="backgroundColor" red="0.80868953284878409" green="0.79615460584053754" blue="0.78010353699959478" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ihF-rn-F18"/>
+                                </constraints>
+                                <state key="normal" title="Change scroll direction">
+                                    <color key="titleColor" red="1" green="0.9784762951867888" blue="0.95811619299553641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.87874198622173738" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ySR-I9-kEc" secondAttribute="trailing" constant="20" id="CpO-o7-beQ"/>
                             <constraint firstItem="DRU-o7-02T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="D9q-v0-xLg"/>
+                            <constraint firstItem="ySR-I9-kEc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XYX-Jp-tUB"/>
+                            <constraint firstItem="ySR-I9-kEc" firstAttribute="top" secondItem="DRU-o7-02T" secondAttribute="bottom" constant="20" id="ey7-Uv-xpg"/>
                             <constraint firstItem="DRU-o7-02T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jJO-bc-ob6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DRU-o7-02T" secondAttribute="trailing" id="k7Y-NR-jvA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="changeButton" destination="ySR-I9-kEc" id="9G1-8v-WAl"/>
                         <outlet property="collectionView" destination="DRU-o7-02T" id="AUO-BA-Uzh"/>
                     </connections>
                 </viewController>
