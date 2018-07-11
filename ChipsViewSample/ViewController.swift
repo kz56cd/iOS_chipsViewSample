@@ -17,7 +17,7 @@ final class ViewController: UIViewController {
     
     fileprivate var cellFrameInfos: [ChipsCellFrameInfo] = []
     fileprivate var disposeBag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCollectionView()
@@ -39,6 +39,7 @@ extension ViewController {
         layout.minimumLineSpacing  = 10
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         layout.scrollDirection = .horizontal // TODO: horizontalの場合は崩れるので、別途対応が必要
+        // layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
         
         
@@ -54,12 +55,19 @@ extension ViewController {
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
                 cell.configure(title)
+            
+                print("collectionView.contentSize \(collectionView.contentSize)")
+            
                 return cell
             }
             .disposed(by: disposeBag)
         
         
         print("cellTitles.list.count: \(cellTitles.list.count)")
+        
+        
+        
+//        print("collectionView.contentSize \(collectionView.contentSize)")
     }
 }
 
