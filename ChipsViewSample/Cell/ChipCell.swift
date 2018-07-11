@@ -9,14 +9,7 @@
 import UIKit
 import Prelude
 
-// NOTE: frame計算用の値。事前にセットしておく
-struct ChipsCellBasics {
-    let leftRightMargins: CGFloat = 32.0
-    let cellHeight: CGFloat = 32.0
-    let font: UIFont = UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)!
-}
-
-final class ChipCell: UICollectionViewCell, XibInstantiatable {
+final class ChipCell: UICollectionViewCell, ChipCellProtocol, XibInstantiatable {
     @IBOutlet weak var textLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -34,24 +27,13 @@ extension ChipCell {
     func configure(_ title: String) {
         textLabel.text = title
     }
-}
-
-struct ChipsCellFrameInfo {
-    let contentString: String
-    let frame: CGSize
-    let basics: ChipsCellBasics
     
-    init(_ contentString: String, basics: ChipsCellBasics) {
-        func calculateStringWidth(text: String, font: UIFont) -> CGFloat {
-            return text.size(withAttributes: [NSAttributedStringKey.font: font]).width
-        }
-        
-        self.contentString = contentString
-        self.basics = basics
-        frame = CGSize(
-            width: calculateStringWidth(text: self.contentString, font: basics.font) + self.basics.leftRightMargins,
-            height: basics.cellHeight
+    static var basics: ChipCellBasics {
+        // NOTE: frame計算用の値を事前にセットしておく
+        return ChipCellBasics(
+            leftRightMargins: 32.0,
+            cellHeight: 32.0,
+            font: UIFont(name: "Hiragino Kaku Gothic ProN", size: 14)!
         )
     }
 }
-

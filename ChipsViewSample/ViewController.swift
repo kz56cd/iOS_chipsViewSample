@@ -15,7 +15,7 @@ final class ViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    fileprivate var cellFrameInfos: [ChipsCellFrameInfo] = []
+    fileprivate var cellFrameInfos: [ChipCellFrameInfo] = []
     fileprivate var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ extension ViewController {
         collectionView.registerClassForCellWithType(ChipCell.self)
         
         // 各セルのwidthを事前に計算する
-        cellFrameInfos = cellTitles.list.map { ChipsCellFrameInfo($0, basics: ChipsCellBasics()) }
+        cellFrameInfos = cellTitles.list.map { ChipCellFrameInfo($0, basics: ChipCell.basics) }
         
         // CustomFlowLayoutのセットアップ
         let layout = CollectionViewFlowLayoutLeftAlign()
