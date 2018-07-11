@@ -42,32 +42,16 @@ extension ViewController {
         // layout.scrollDirection = .vertical
         collectionView.collectionViewLayout = layout
         
-        
-//        var numList: [String] = []
-//        for num in 1...300 {
-//            numList.append("\(num)")
-//        }
-//        cellFrameInfos = numList.map { ChipsCellFrameInfo($0, basics: ChipsCellBasics()) }
-        
         let list = Observable.just(cellTitles.list.map{ $0 })
-//        let list = Observable.just(numList.map{ $0 })
         list.bind(to: collectionView.rx.items) { collectionView, row, title in
                 let indexPath = IndexPath(row: row, section: 0)
                 let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
                 cell.configure(title)
-            
                 print("collectionView.contentSize \(collectionView.contentSize)")
-            
                 return cell
             }
             .disposed(by: disposeBag)
-        
-        
         print("cellTitles.list.count: \(cellTitles.list.count)")
-        
-        
-        
-//        print("collectionView.contentSize \(collectionView.contentSize)")
     }
 }
 

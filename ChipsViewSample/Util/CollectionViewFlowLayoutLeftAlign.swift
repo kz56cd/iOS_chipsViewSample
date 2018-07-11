@@ -9,69 +9,31 @@
 import UIKit
 
 class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
-    
-    
     var layoutAttributes: [UICollectionViewLayoutAttributes] = []
-    
-//    var layoutAttributes02: [UICollectionViewLayoutAttributes] = []
-    
-//    var contentWidth: CGFloat {
-//        guard let collectionView = collectionView else { return 0 }
-//        return collectionView.bounds.width
-//    }
+
     var contentWidth: CGFloat = 0
-    var contentHeight: CGFloat {
-        guard let collectionView = collectionView else { return 0 }
-        return collectionView.bounds.height
+    var contentHeight: CGFloat = 0
+    
+    override var collectionViewContentSize: CGSize {
+        switch scrollDirection {
+        case .horizontal:
+            return CGSize(width: contentWidth, height: collectionView?.bounds.height ?? 0.0)
+        case .vertical:
+            return CGSize(width: collectionView?.bounds.width ?? 0.0, height: contentHeight)
+        }
     }
     
-//    override var collectionViewContentSize: CGSize {
-//        return CGSize(width: contentWidth, height: contentHeight)
-//    }
-    
-//    // ここで事前にレイアウト計算をした方がよいとのこと
+    // 事前にレイアウト計算を行う
     override func prepare() {
         super.prepare()
-        
         guard layoutAttributes.isEmpty,
             let collectionView = collectionView else {
                 return
         }
         
-//        let columnWidth = contentWidth / CGFloat(numColumns)
-//        var xOffsets = [CGFloat]()
-//        for column in 0..<numColumns {
-//            xOffsets.append(columnWidth * CGFloat(column))
-//        }
-
-        
-        
-        
-        
-        
-        
-        
-        
-//        guard let viewHeight = collectionView?.frame.height else { return nil }
-//        let linesNum = cellLinesNumber(
-//            by: currentAttributes.frame.height,
-//            viewHeight: viewHeight,
-//            sectionInsets: sectionInsets(at: indexPath.section),
-//            minimumLineSpacing: minimumLineSpacing(at: indexPath.section)
-//        )
-
-        
-        // let colmnHeight = contentHeight / CGFloat(lineNum)
-        
-        // sectionInsetの左端の値
-//        let sectionInsetsLeft = sectionInsets(at: 0).left
-//        let sectionInsetsTop = sectionInsets(at: 0).top
-        
-        switch self.scrollDirection {
+        switch scrollDirection {
         case .horizontal:
-            
-            print("collectionView.numberOfItems(inSection: 0) \(collectionView.numberOfItems(inSection: 0))")
-            
+            // print("collectionView.numberOfItems(inSection: 0) \(collectionView.numberOfItems(inSection: 0))")
             for item in 0..<collectionView.numberOfItems(inSection: 0) {
                 
                 let indexPath = IndexPath(item: item, section: 0)
@@ -85,27 +47,11 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                     minimumLineSpacing: minimumLineSpacing(at: 0)
                 )
                 let columHeight = floor(collectionView.bounds.height / CGFloat(linesNum))
-                
-                // print("linesNum \(linesNum)")
-//                print("minimumLineSpacing(at: 0) \(minimumLineSpacing(at: 0))")
-                
-                // guardだと回らない
-                // 段数に応じ、先頭にくるセルは、x座標を左端にする
-//                guard item >= linesNum else {
-//                    print("item 左端に設置： \(item)")
-//
-////                    currentAttributes.frame.origin.x = sectionInsetsLeft
-////                    layoutAttributes.append(currentAttributes)
-//                    layoutAttribute.frame.size = cellSize
-//                    layoutAttribute.frame.origin.x = sectionInsetsLeft
-//
-//                    // TODO: y座標も入れないといけない
-//                    // print("(item % linesNum \(item % linesNum)")
-//                    break
-//                }
+                let hoge = collectionView.bounds.height / CGFloat(linesNum)
+                // print("columHeight（切り捨てなし）： \(hoge)")
 
                 if let cellPositionType = HorizontalCellPositionType.calcPosition(by: linesNum, item: item) {
-                     print("\(item) -> \(cellPositionType)")
+                    // print("\(item) -> \(cellPositionType)")
                     layoutAttribute.frame.size = cellSize
                     
                     switch cellPositionType {
@@ -115,35 +61,31 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
                             y: sectionInsets(at: 0).top
                         )
                     case .leftEdge, .leftAndBottomEdges:
+                        // print("minimumLineSpacing(at: 0) : \(minimumLineSpacing(at: 0))")
+                        // print("🛎🛎🛎 \(columHeight * CGFloat(item) + minimumLineSpacing(at: 0))")
+                        
+                        // 一つ前のセルframeを取得
+                        let prevAttributeFrame = layoutAttributes[item - 1].frame
                         layoutAttribute.frame.origin = CGPoint(
                             x: sectionInsets(at: 0).left,
-                            y: floor(columHeight * CGFloat(item) + minimumLineSpacing(at: 0)) // NOTE: どうも詰まりすぎる..
+                            y: prevAttributeFrame.maxY + minimumLineSpacing(at: 0)
                         )
                     case .topEdge:
-
-//                        let prevIndexPath = IndexPath(row: indexPath.item - linesNum, section: indexPath.section)
-//                        guard let prevFrame = layoutAttributesForItem(at: prevIndexPath)?.frame else {
-//                            return nil
-//                        }
-
-//                        let prevIndexPath = IndexPath(row: item - linesNum, section: indexPath.section)
-                        print("item - linesNum \(item - linesNum)")
-                        
-//                        let prevAttributeFrame = layoutAttributes[0].frame // 後ほど下に変更
-                         let prevAttributeFrame = layoutAttributes[item - linesNum].frame
+                        // print("item - linesNum \(item - linesNum)")
+                        // 左に隣接するセルframeを取得
+                        let nearLeftAttributeFrame = layoutAttributes[item - linesNum].frame
                         layoutAttribute.frame.origin = CGPoint(
-                            x: prevAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
+                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
                             y: sectionInsets(at: 0).top
                         )
                     case .noEdge, .bottomEdge:
-//                        let prevAttributeFrame = layoutAttributes[0].frame // 後ほど下に変更
-                         let prevAttributeFrame = layoutAttributes[item - linesNum].frame
+                        // 左に隣接するセルframeを取得
+                        let nearLeftAttributeFrame = layoutAttributes[item - linesNum].frame
                         layoutAttribute.frame.origin = CGPoint(
-                            x: prevAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
-                            y: floor(columHeight * CGFloat(item % linesNum) + minimumLineSpacing(at: 0)) // NOTE: どうも詰まりすぎる..
+                            x: nearLeftAttributeFrame.maxX + minimumInteritemSpacing(at: 0),
+                            y: nearLeftAttributeFrame.origin.y
                         )
                     }
-                    
                     if layoutAttribute.frame.origin != CGPoint.zero { // 完成したらトル
                         layoutAttributes.append(layoutAttribute)
                     }
@@ -151,19 +93,11 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
             }
             _ = layoutAttributes.map { print($0.frame) }
             
-//            let itemHeight = delegate.collectionView(collectionView, heightForItemAt: indexPath)
-//            let height = itemHeight + padding * 2
-//            let frame = CGRect(x: xOffsets[column], y: yOffsets[column], width: columnWidth, height: height)
-//            let insetFrame = frame.insetBy(dx: padding, dy: padding)
-//
-//            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-//            attributes.frame = insetFrame
-//            attributesArray.append(attributes)
-//
-//            contentHeight = max(contentHeight, frame.maxY)
-//            yOffsets[column] = yOffsets[column] + height
-//
-//            column = column < (numColumns - 1) ? (column + 1) : 0
+            // いちばん右端に位置するセルから、contentSizeのwidthを算出し、collectionViewContentSizeに反映
+            self.contentWidth = layoutAttributes
+                .map { return $0.frame.origin.x + $0.frame.width + minimumInteritemSpacing(at: 0) }
+                .max() ?? 0.0
+            // print("contentWidth: \(contentWidth)")
         case .vertical:
             print("未対応")
         }
@@ -183,28 +117,21 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
             
             if itemNum <= linesNum { // 左端の場合
                 if itemNum == 1 {
-                    // print("item 左端、かつ上端： \(item)")
                     return .leftAndTopEdges
                 } else if itemNum % linesNum == 0 {
-                    // print("item 左端、かつ下端： \(item)")
                     return .leftAndBottomEdges
                 } else {
-                    // print("item 左端： \(item)")
                     return .leftEdge
                 }
             } else {
                 if itemNum % linesNum == 1 {
-                    // print("item 左端ではない、かつ上端： \(item)")
                     return .topEdge
                 } else if itemNum % linesNum == 0  {
-                    // print("item 左端ではない、かつ下端： \(item)")
                     return .bottomEdge
                 } else {
-                    // print("item 左端ではない： \(item)")
                     return .noEdge
                 }
             }
-            return nil
         }
     }
     
@@ -231,22 +158,7 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
 //    }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        // あらかじめ決定されている表示領域内のレイアウト属性を取得
-//        guard let attributes = super.layoutAttributesForElements(in: rect) else {
-//            return nil
-//        }
-//        // layoutAttributesForItemAtIndexPath(_:)で各レイアウト属性を書き換える
-//        var attributesToReturn = attributes.map { $0.copy() as! UICollectionViewLayoutAttributes }
-//        for (index, attr) in attributes.enumerated() where attr.representedElementCategory == .cell {
-//            attributesToReturn[index] = layoutAttributesForItem(at: attr.indexPath) ?? UICollectionViewLayoutAttributes()
-//        }
-//        return attributesToReturn
-        
-        
-        // あらかじめ決定されている表示領域内のレイアウト属性を取得
-//        guard let attributes = super.layoutAttributesForElements(in: rect) else {
-//            return nil
-//        }
+        super.layoutAttributesForElements(in: rect)
         
         switch self.scrollDirection {
         case .horizontal:
@@ -257,7 +169,6 @@ class CollectionViewFlowLayoutLeftAlign: UICollectionViewFlowLayout {
             print("まだ未対応です")
             return nil
         }
-
     }
 
     
