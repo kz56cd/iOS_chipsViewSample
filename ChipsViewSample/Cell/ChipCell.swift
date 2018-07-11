@@ -9,7 +9,7 @@
 import UIKit
 import Prelude
 
-final class ChipCell: UICollectionViewCell, ChipCellProtocol, XibInstantiatable {
+final class ChipCell: UICollectionViewCell, XibInstantiatable {
     @IBOutlet weak var textLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -27,7 +27,9 @@ extension ChipCell {
     func configure(_ title: String) {
         textLabel.text = title
     }
-    
+}
+
+extension ChipCell: ChipCellProtocol {
     static var basics: ChipCellBasics {
         // NOTE: frame計算用の値を事前にセットしておく
         return ChipCellBasics(

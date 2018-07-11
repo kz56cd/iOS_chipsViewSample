@@ -38,8 +38,10 @@ extension ViewController {
         layout.minimumInteritemSpacing = 10 // 仮で広めにマージン取る
         layout.minimumLineSpacing  = 10
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
-        layout.scrollDirection = .horizontal // TODO: horizontalの場合は崩れるので、別途対応が必要
-        // layout.scrollDirection = .vertical
+        
+        // layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
+        
         collectionView.collectionViewLayout = layout
         
         let list = Observable.just(cellTitles.list.map{ $0 })
