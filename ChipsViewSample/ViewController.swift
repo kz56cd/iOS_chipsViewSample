@@ -51,12 +51,7 @@ extension ViewController {
         collectionView.collectionViewLayout = configureCustomlayout(scrollDirection)
         
         let list = Observable.just(cellTitles.list.map{ $0 })
-        list.bind(to: collectionView.rx.items) { collectionView, row, title in
-                let indexPath = IndexPath(row: row, section: 0)
-                let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
-                cell.configure(title)
-                return cell
-            }
+        list.bind(to: collectionView.rx.items(dataSource: CollectionViewDataSource()))
             .disposed(by: disposeBag)
     }
 }

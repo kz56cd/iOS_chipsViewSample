@@ -8,8 +8,12 @@
 
 import Foundation
 
-struct cellTitles {
-    static let list = [
+protocol cellTitlesProtocol {
+    typealias Area = String
+}
+
+struct cellTitles: cellTitlesProtocol {
+    static let list: [Area] = [
         "銀座・日比谷・有楽町",
         "銀座",
         "日比谷",

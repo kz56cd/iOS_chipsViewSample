@@ -24,6 +24,9 @@
 		EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */; };
 		EA7DC86F20EF13C800F1EBC9 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7DC86D20EF13C800F1EBC9 /* RxSwift.framework */; };
 		EA7DC87020EF13C800F1EBC9 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7DC86E20EF13C800F1EBC9 /* RxCocoa.framework */; };
+		EADF2B1220F800CC000CB61F /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADF2B1120F800CC000CB61F /* RxDataSources.framework */; };
+		EADF2B1420F8012A000CB61F /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADF2B1320F8012A000CB61F /* Differentiator.framework */; };
+		EADF2B1620F80173000CB61F /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADF2B1520F80173000CB61F /* CollectionViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellTitleList.swift; sourceTree = "<group>"; };
 		EA7DC86D20EF13C800F1EBC9 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		EA7DC86E20EF13C800F1EBC9 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		EADF2B1120F800CC000CB61F /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		EADF2B1320F8012A000CB61F /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
+		EADF2B1520F80173000CB61F /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADF2B1420F8012A000CB61F /* Differentiator.framework in Frameworks */,
+				EADF2B1220F800CC000CB61F /* RxDataSources.framework in Frameworks */,
 				EA7DC86F20EF13C800F1EBC9 /* RxSwift.framework in Frameworks */,
 				EA7DC87020EF13C800F1EBC9 /* RxCocoa.framework in Frameworks */,
 				EA7DC85F20EE0CD200F1EBC9 /* Prelude.framework in Frameworks */,
@@ -164,6 +172,8 @@
 		EA7DC85D20EE0CD200F1EBC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EADF2B1320F8012A000CB61F /* Differentiator.framework */,
+				EADF2B1120F800CC000CB61F /* RxDataSources.framework */,
 				EA7DC86E20EF13C800F1EBC9 /* RxCocoa.framework */,
 				EA7DC86D20EF13C800F1EBC9 /* RxSwift.framework */,
 				EA7DC85E20EE0CD200F1EBC9 /* Prelude.framework */,
@@ -186,6 +196,7 @@
 				EA7DC86920EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift */,
 				EA7DC86720EE0EDE00F1EBC9 /* InspectableView.swift */,
 				EA7DC86B20EF064400F1EBC9 /* cellTitleList.swift */,
+				EADF2B1520F80173000CB61F /* CollectionViewDataSource.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -329,6 +340,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Prelude.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -347,6 +360,7 @@
 				EA7DC86320EE0DAD00F1EBC9 /* ChipCell.swift in Sources */,
 				EA7DC86820EE0EDE00F1EBC9 /* InspectableView.swift in Sources */,
 				EA7DC86A20EEEE5500F1EBC9 /* CollectionViewFlowLayoutLeftAlign.swift in Sources */,
+				EADF2B1620F80173000CB61F /* CollectionViewDataSource.swift in Sources */,
 				EA7DC83020EE0AFD00F1EBC9 /* ViewController.swift in Sources */,
 				EA50DCA920F6228E00635914 /* ChipCellProtocol.swift in Sources */,
 				EA7DC86C20EF064400F1EBC9 /* cellTitleList.swift in Sources */,
