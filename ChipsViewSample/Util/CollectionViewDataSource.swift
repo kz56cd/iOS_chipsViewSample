@@ -11,12 +11,18 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
+// NOTE:
+// こちらのCollectionViewDataSourceは、sectionを利用しない場合は使用可能
+
+// sectionを使いたい場合は以下のような対応になるとのこと
+// https://stackoverflow.com/questions/39580085/rxswift-and-uicollectionview-header
+
 class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     typealias Element = [String]
     var _itemModels: [String] = []
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -24,7 +30,8 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let indexPath = IndexPath(row: indexPath.row, section: 0)
+        print(indexPath)
+        
         let cell = collectionView.dequeueReusableCellWithType(ChipCell.self, forIndexPath: indexPath)
         cell.configure(_itemModels[indexPath.row])
         return cell
