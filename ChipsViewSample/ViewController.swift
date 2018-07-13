@@ -49,10 +49,22 @@ extension ViewController {
         
         // CustomFlowLayoutのセットアップ
         collectionView.collectionViewLayout = configureCustomlayout(scrollDirection)
+
+        // 01:
+        // sectionなし、独自dataSourceバージョン
+//        let list = Observable.just(cellTitles.list.map{ $0 })
+//        list.bind(to: collectionView.rx.items(dataSource: CollectionViewDataSource()))
+//            .disposed(by: disposeBag)
         
-        let list = Observable.just(cellTitles.list.map{ $0 })
-        list.bind(to: collectionView.rx.items(dataSource: CollectionViewDataSource()))
-            .disposed(by: disposeBag)
+        // 02:
+        // sectionあり、独自dataSourceバージョン
+        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, String>>()
+        let items = Observable.just([
+            SectionModel(model: "1st section", items: cellTitles.list),
+            SectionModel(model: "2nd section", items: cellTitles.list),
+            SectionModel(model: "3rd section", items: cellTitles.list)
+            ])
+    
     }
 }
 
@@ -63,6 +75,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
         ) -> CGSize {
         return cellFrameInfos[indexPath.row].frame
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        // return CGSize.zero // header sectionが不要であればzeroを渡す
+        return CGSize.init(width: collectionView.bounds.width, height: 100)
     }
 }
 
